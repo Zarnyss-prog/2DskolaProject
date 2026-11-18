@@ -19,136 +19,139 @@ public class playerControler : MonoBehaviour
 
     public TextMeshProUGUI score_text;
 
-    public List<GameObject> Lives;
+    public List<GameObject> Lives = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is createdvoid Start()
-
+    private void Start()
     {
-        
-        rb = GetComponent<Rigidbody2D>;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
-// Update is called once per framevoid FixedUpdate()
-
-{
-    if (Keyboard.current.aKey.isPressed)
+    // Update is called once per framevoid FixedUpdate()
+    private void FixedUpdate()
     {
-
-        rb.AddForce(new Vector2(-speed, 0));
-
-        //transform.position = new Vector3(-speed+transform.position.x, transform.position.y, 0);        }
-
-
-        if (Keyboard.current.dKey.isPressed)
-
+        if (Keyboard.current.aKey.isPressed)
         {
 
-            rb.AddForce(new Vector2(speed, 0));
+            rb.AddForce(new Vector2(-speed, 0));
 
-            //transform.position = new Vector3(speed+transform.position.x, transform.position.y,0);        }
+            //transform.position = new Vector3(-speed+transform.position.x, transform.position.y, 0);        }
 
 
-            if (Keyboard.current.wKey.isPressed && jump)
+            if (Keyboard.current.dKey.isPressed)
 
             {
 
-                rb.AddForce(new Vector2(0, speed * 20));
+                rb.AddForce(new Vector2(speed, 0));
 
-                //transform.position = new Vector3(speed+transform.position.y, transform.position.x, 0);        }
+                //transform.position = new Vector3(speed+transform.position.x, transform.position.y,0);        }
 
 
-                if (Keyboard.current.sKey.isPressed)
+                if (Keyboard.current.wKey.isPressed && jump)
 
                 {
 
-                    rb.AddForce(new Vector2(0, -speed));
+                    rb.AddForce(new Vector2(0, speed * 20));
 
-                    //transform.position = new Vector3(-speed+transform.position.y, transform.position.x, 0);        }
+                    //transform.position = new Vector3(speed+transform.position.y, transform.position.x, 0);        }
 
+
+                    if (Keyboard.current.sKey.isPressed)
+
+                    {
+
+                        rb.AddForce(new Vector2(0, -speed));
+
+                        //transform.position = new Vector3(-speed+transform.position.y, transform.position.x, 0);        }
+
+                    }
                 }
-
+            }
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
 
-{
-
-    if (collision.gameObject.CompareTag("pickup"))
-
     {
 
-        score = score + 1;
+        if (collision.gameObject.CompareTag("pickup"))
 
-        Debug.Log("score: " + score.ToString());
+        {
 
-        score_text.text = $"Score je: {score}";
+            score = score + 1;
 
-        collision.gameObject.SetActive(false);
+            Debug.Log("score: " + score.ToString());
+
+            score_text.text = $"Score je: {score}";
+
+            collision.gameObject.SetActive(false);
+
+        }
+
+        if (collision.gameObject.CompareTag("pickup1"))
+
+        {
+
+            score = score + 2;
+
+            Debug.Log("score: " + score.ToString());
+
+            score_text.text = $"Score je: {score}";
+
+            collision.gameObject.SetActive(false);
+
+        }
+
 
     }
 
-    if (collision.gameObject.CompareTag("pickup1"))
+
+    private void OnCollisionExit2D(Collision2D collision)
 
     {
 
-        score = score + 2;
+        if (collision.gameObject.CompareTag("ground"))
 
-        Debug.Log("score: " + score.ToString());
+        {
 
-        score_text.text = $"Score je: {score}";
+            jump = false;
 
-        collision.gameObject.SetActive(false);
+        }
 
     }
 
 
-}
-
-
-private void OnCollisionExit2D(Collision2D collision)
-
-{
-
-    if (collision.gameObject.CompareTag("ground"))
+    private void OnCollisionStay2D(Collision2D collision)
 
     {
 
-        jump = false;
+        if (collision.gameObject.CompareTag("ground"))
+
+        {
+
+            jump = true;
+
+        }
 
     }
 
-}
 
-
-private void OnCollisionStay2D(Collision2D collision)
-
-{
-
-    if (collision.gameObject.CompareTag("ground"))
+    private void OnCollisionEnter2D(Collision2D collision)
 
     {
 
-        jump = true;
+        if (collision.gameObject.CompareTag("enemy"))
+
+        {
+
+            Lives[Lives.Count - 1].SetActive(false);
+
+            Lives.RemoveAt(Lives.Count - 1);
+
+        }
 
     }
-
-}
-
-
-private void OnCollisionEnter2D(Collision2D collision)
-
-{
-
-    if (collision.gameObject.CompareTag("enemy"))
-
-    {
-
-        lives[lives.Count - 1].SetActive(false);
-
-        lives.RemoveAt(lives.Count - 1);
-
-    }
-
-}
 
 }
