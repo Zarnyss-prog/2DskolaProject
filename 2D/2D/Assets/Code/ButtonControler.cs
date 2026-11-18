@@ -1,0 +1,32 @@
+using UnityEngine;
+
+public class ButtonControler : MonoBehaviour
+{
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void Level1()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+    }
+
+
+    public void Intro()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+}
