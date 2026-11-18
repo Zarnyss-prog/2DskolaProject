@@ -428,8 +428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d324170c26130594fa773fcb9a5a19a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerController
-  speed: 0
+  speed: 10
   score_text: {fileID: 0}
+  Lives:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!58 &1057254482
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6824,15 +6828,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7589461958765421174, guid: 4be9cec5f04ec0b47ab12259d0f9945d, type: 3}
       propertyPath: m_Color.b
-      value: 0.74509805
+      value: 0.17145465
       objectReference: {fileID: 0}
     - target: {fileID: 7589461958765421174, guid: 4be9cec5f04ec0b47ab12259d0f9945d, type: 3}
       propertyPath: m_Color.g
-      value: 0.8784314
+      value: 0.09411766
       objectReference: {fileID: 0}
     - target: {fileID: 7589461958765421174, guid: 4be9cec5f04ec0b47ab12259d0f9945d, type: 3}
       propertyPath: m_Color.r
-      value: 0.09433961
+      value: 0.8784314
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

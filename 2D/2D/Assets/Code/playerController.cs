@@ -30,45 +30,38 @@ public class playerControler : MonoBehaviour
 
 
     // Update is called once per framevoid FixedUpdate()
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (Keyboard.current.aKey.isPressed)
         {
 
             rb.AddForce(new Vector2(-speed, 0));
 
-            //transform.position = new Vector3(-speed+transform.position.x, transform.position.y, 0);        }
+            //transform.position = new Vector3(-speed+transform.position.x, transform.position.y, 0); }
 
+        }
 
-            if (Keyboard.current.dKey.isPressed)
-
-            {
-
+        if (Keyboard.current.dKey.isPressed)
+        {
                 rb.AddForce(new Vector2(speed, 0));
 
                 //transform.position = new Vector3(speed+transform.position.x, transform.position.y,0);        }
+        }
 
-
-                if (Keyboard.current.wKey.isPressed && jump)
-
-                {
+        if (Keyboard.current.wKey.isPressed && jump)
+        {
 
                     rb.AddForce(new Vector2(0, speed * 20));
 
                     //transform.position = new Vector3(speed+transform.position.y, transform.position.x, 0);        }
+        }
 
-
-                    if (Keyboard.current.sKey.isPressed)
-
-                    {
-
+        if (Keyboard.current.sKey.isPressed)
+        {
                         rb.AddForce(new Vector2(0, -speed));
 
                         //transform.position = new Vector3(-speed+transform.position.y, transform.position.x, 0);        }
 
-                    }
-                }
-            }
         }
     }
 
@@ -136,9 +129,10 @@ public class playerControler : MonoBehaviour
         }
 
     }
+}
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
 
     {
 
@@ -153,5 +147,6 @@ public class playerControler : MonoBehaviour
         }
 
     }
+    */
 
-}
+   
